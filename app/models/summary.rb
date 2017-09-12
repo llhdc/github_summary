@@ -1,6 +1,10 @@
 class Summary < ApplicationRecord
   GITHUB_API_URL="https://api.github.com"
 
+  def ready?
+    repos_response.present?
+  end
+
   def user
     user_response
   end
