@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  user_response: 
+  repos_response: MyString
+  jsonb: MyString
+
+two:
+  username: MyString
+  user_response: 
+  repos_response: MyString
+  jsonb: MyString
