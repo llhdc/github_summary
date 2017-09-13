@@ -2,7 +2,7 @@ class Summary < ApplicationRecord
   GITHUB_API_URL="https://api.github.com"
 
   def ready?
-    repos_response.present?
+    user_response.present? && repos_response.present?
   end
 
   def user
@@ -25,12 +25,12 @@ class Summary < ApplicationRecord
   end
 
   def get_user
-    url = "#{GITHUB_API_URL}/users/#{self.username}"
+    url = "#{GITHUB_API_URL}/users/#{username}"
     self.user_response = authenticated_get(url)
   end
 
   def get_repos
-    url = "#{GITHUB_API_URL}/users/#{self.username}/repos"
+    url = "#{GITHUB_API_URL}/users/#{username}/repos"
     response = authenticated_get(url)
     self.repos_response = response.to_a
   end

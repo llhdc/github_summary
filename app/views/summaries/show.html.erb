@@ -1,5 +1,5 @@
 <% if @summary.ready? %>
-  <h1><%= @user["name"] %> (@<%= @username %>)</h1>
+  <h1><%= @summary.user["name"] %> (@<%= @summary.username %>)</h1>
 
   <p>
     Languages: <%= @languages %>
@@ -7,7 +7,7 @@
 
   <h2>Most Recent Repos</h2>
 
-  <% @repos.each do |repo| %>
+  <% @summary.repos.each do |repo| %>
   <p>
     <a href="<%= repo["html_url"] %>"><%= repo["name"] %></a>
     <%= repo["language"] %> - last push on <%= repo["pushed_at"].to_date.to_s %>
@@ -17,7 +17,7 @@
   <h1>Loading Profile...</h1>
   <script>
     setInterval(function() {
-      var req = new XMLHttpRequest();
+      let req = new XMLHttpRequest();
       req.open("GET", window.location.href, true);
 
       req.onload = function() {
