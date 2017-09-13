@@ -7,15 +7,17 @@ class SummariesController < ApplicationController
   def show
     @summary = Summary.find_or_create_by(username: params[:username])
 
-    LoadPageJob.perform_later(@summary)
-
-    # if request.xhr?
-    #   if @summary.ready?
-    #     head 200
-    #   else
-    #     head 502
-    #   end
-    # end
+    if request.xhr?
+      if @summary.ready?
+        head 200
+      else
+        head 202
+      end
+    else
+      unless @summary.ready?
+        LoadPageJob.perform_later(@summary)
+      end
+    end
   end
 
 end
